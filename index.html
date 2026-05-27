@@ -106,19 +106,17 @@
       overflow: hidden;
     }
 
-    /* hero photo — clean, soft left edge into the page */
+    /* hero photo — freigestellt, schwebt auf dem Hintergrund */
     .hero-photo {
       position: absolute;
       bottom: 0;
-      left: 42%;
+      left: 50%;
       transform: translateX(-50%);
       z-index: 2;
-      height: 95%;
+      height: 98%;
       width: auto;
-      filter: contrast(1.03);
+      filter: contrast(1.02) drop-shadow(0 10px 28px rgba(28,21,16,.14));
       pointer-events: none;
-      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 13%);
-      mask-image: linear-gradient(to right, transparent 0, #000 13%);
     }
 
     /* handwritten annotations */
@@ -712,7 +710,7 @@
   <!-- right: photo full height -->
   <div class="hero-photo-col">
     <div class="hero-annotation ann-guide">This is<br>Saphira.</div>
-    <img class="hero-photo" src="foto2.jpg" alt="Saphira Phoebe Knapp" />
+    <img class="hero-photo" src="saphira-frei.png" alt="Saphira Phoebe Knapp" />
     <div class="hero-annotation ann-by" style="bottom:2rem;right:2rem;">By Saphira Knapp</div>
   </div>
 
