@@ -106,7 +106,7 @@
       overflow: hidden;
     }
 
-    /* b&w photo */
+    /* hero photo — clean, soft left edge into the page */
     .hero-photo {
       position: absolute;
       bottom: 0;
@@ -115,11 +115,10 @@
       z-index: 2;
       height: 95%;
       width: auto;
-      filter: grayscale(1) contrast(1.1);
-      mix-blend-mode: multiply;
+      filter: contrast(1.03);
       pointer-events: none;
-      mask-image: radial-gradient(ellipse 52% 50% at 50% 38%, black 55%, transparent 88%);
-      -webkit-mask-image: radial-gradient(ellipse 52% 50% at 50% 38%, black 55%, transparent 88%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 13%);
+      mask-image: linear-gradient(to right, transparent 0, #000 13%);
     }
 
     /* handwritten annotations */
@@ -246,21 +245,39 @@
     .sticky1 { bottom:220px; left:-10px; transform:rotate(-3deg); }
     .sticky2 { top:10px; right:-10px; transform:rotate(2deg); background:#d4eacf; }
 
-    /* skills inline row */
+    /* skills */
+    .skills { margin-top:2rem; }
+    .skills-group { margin-bottom:1.1rem; }
+    .skills-group:last-child { margin-bottom:0; }
+    .skills-label {
+      display:block;
+      font-size:.62rem;
+      font-weight:600;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color: var(--muted);
+      margin-bottom:.6rem;
+    }
     .skills-row {
-      display:flex; flex-wrap:wrap; gap:.4rem;
-      margin-top:1.8rem;
+      display:flex; flex-wrap:wrap; gap:.45rem;
     }
     .sk {
       font-size:.7rem;
       letter-spacing:.1em;
       text-transform:uppercase;
-      padding:.3rem .85rem;
+      padding:.32rem .85rem;
       border:1.5px solid var(--ink);
       background:transparent;
       transition:background .2s, color .2s;
     }
     .sk:hover { background:var(--ink); color:var(--cream); }
+    .sk-top {
+      background: var(--pink);
+      color:#fff;
+      border-color: var(--pink);
+      font-weight:500;
+    }
+    .sk-top:hover { background:#d96a8e; color:#fff; }
 
     /* ── PAGE 3 · VIBES QUOTE ── */
     #vibe {
@@ -709,15 +726,42 @@
       <p>Huhu, ich bin Saphira, 22 – <strong>Mediengestalterin und Social Media Content Creatorin.</strong></p>
       <p>Zurzeit arbeite ich im Marketing der Dorow Clinic in Waldshut: Ich plane, produziere und betreue Content für Instagram, TikTok, Facebook & YouTube.</p>
       <p>Zuhause bin ich in Breitenfeld, einem kleinen Dorf im Schwarzwald. Als Naturfreundin hole ich mir hier zwischen Wald und Wiesen den Kopf frei – und neue Ideen.</p>
-      <div class="skills-row">
-        <span class="sk">Canva</span>
-        <span class="sk">Adobe</span>
-        <span class="sk">ProCreate</span>
-        <span class="sk">WordPress</span>
-        <span class="sk">Inxmail</span>
-        <span class="sk">Social Media</span>
-        <span class="sk">Print</span>
-        <span class="sk">MS-Office</span>
+      <div class="skills">
+        <div class="skills-group">
+          <span class="skills-label">Sehr gut</span>
+          <div class="skills-row">
+            <span class="sk sk-top">Fotografie</span>
+            <span class="sk sk-top">Videografie</span>
+          </div>
+        </div>
+        <div class="skills-group">
+          <span class="skills-label">Kreativ & Design</span>
+          <div class="skills-row">
+            <span class="sk">Illustration</span>
+            <span class="sk">Print Design</span>
+            <span class="sk">Bildbearbeitung</span>
+            <span class="sk">Videoschnitt</span>
+          </div>
+        </div>
+        <div class="skills-group">
+          <span class="skills-label">Social & Content</span>
+          <div class="skills-row">
+            <span class="sk">Social Media</span>
+            <span class="sk">Content Creation</span>
+            <span class="sk">Community Mgmt</span>
+          </div>
+        </div>
+        <div class="skills-group">
+          <span class="skills-label">Tools</span>
+          <div class="skills-row">
+            <span class="sk">Adobe CC</span>
+            <span class="sk">Canva</span>
+            <span class="sk">ProCreate</span>
+            <span class="sk">WordPress</span>
+            <span class="sk">Inxmail</span>
+            <span class="sk">MS-Office</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
