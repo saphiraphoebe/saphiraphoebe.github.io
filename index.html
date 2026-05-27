@@ -109,14 +109,16 @@
     .hero-photo {
       position: absolute;
       bottom: 0;
-      left: 50%;
+      left: 42%;
       transform: translateX(-50%);
       z-index: 2;
       height: 95%;
       width: auto;
-      filter: grayscale(1) contrast(1.08);
+      filter: grayscale(1) contrast(1.1);
       mix-blend-mode: multiply;
-      pointer-events:none;
+      pointer-events: none;
+      mask-image: radial-gradient(ellipse 52% 50% at 50% 38%, black 55%, transparent 88%);
+      -webkit-mask-image: radial-gradient(ellipse 52% 50% at 50% 38%, black 55%, transparent 88%);
     }
 
     /* handwritten annotations */
@@ -148,6 +150,24 @@
       bottom:2.5rem; right:3.5rem;
       font-size:1rem;
       font-family: var(--hand);
+    }
+
+    /* heart dot on the i in Saphira */
+    .heart-i {
+      position: relative;
+      display: inline-block;
+    }
+    .heart-i::after {
+      content: '♥';
+      position: absolute;
+      top: 0.07em;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.23em;
+      color: var(--pink);
+      font-family: Arial, sans-serif;
+      line-height: 1;
+      pointer-events: none;
     }
 
     /* ── PAGE 2 · ÜBER MICH ── */
@@ -576,8 +596,8 @@
   <!-- left: annotations + big name -->
   <div class="hero-name-block">
     <div class="hero-annotation ann-hi">Hi. Da du neu hier bist —<br>lass mich dein Guide sein.</div>
-    <div class="hero-bg-name">Saphira<br>Knapp.</div>
-    <div class="hero-annotation ann-role" style="position:relative;bottom:auto;left:auto;margin-top:1rem;">Mediengestalterin / Content Creator</div>
+    <div class="hero-bg-name">Saph<span class="heart-i">ı</span>ra<br>Knapp.</div>
+    <div class="hero-annotation ann-role">Mediengestalterin / Content Creator</div>
   </div>
 
   <!-- right: photo full height -->
