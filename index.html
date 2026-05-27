@@ -69,36 +69,52 @@
       position:relative;
       overflow:hidden;
       background: var(--bg);
-      display:flex; align-items:center;
-      padding:6rem 3rem 3rem;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      padding: 5rem 0 0 0;
     }
 
-    /* big bg text — like Stacey's STACEY WANG */
+    /* left half: name stacked */
+    .hero-name-block {
+      position: relative;
+      padding: 7rem 2rem 3rem 3rem;
+      z-index: 2;
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* big handwritten name — contained in left col */
     .hero-bg-name {
-      position:absolute;
-      bottom: -0.15em;
-      left: -0.05em;
       font-family: var(--hand);
-      font-size: clamp(9rem, 22vw, 20rem);
+      font-size: clamp(7rem, 14vw, 13rem);
       font-weight:700;
       color: var(--pink);
-      line-height:.85;
-      pointer-events:none;
-      letter-spacing:-.03em;
-      white-space:nowrap;
+      line-height:.88;
+      letter-spacing:-.02em;
       z-index:1;
-      opacity:.92;
+      opacity:.95;
     }
 
-    /* b&w photo sitting on top of giant text */
+    /* right half: photo fills full height */
+    .hero-photo-col {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* b&w photo */
     .hero-photo {
-      position:absolute;
-      bottom:0;
-      left:50%;
-      transform:translateX(-40%);
-      z-index:2;
-      width:clamp(260px,36vw,480px);
-      filter: grayscale(1) contrast(1.05);
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      height: 95%;
+      width: auto;
+      filter: grayscale(1) contrast(1.08);
       mix-blend-mode: multiply;
       pointer-events:none;
     }
@@ -111,13 +127,13 @@
       z-index:3;
     }
     .ann-hi {
-      top: 8rem; left:3rem;
-      font-size: clamp(1.2rem,2.5vw,1.7rem);
+      top: 7rem; left:3rem;
+      font-size: clamp(1.1rem,2vw,1.5rem);
       line-height:1.6;
     }
     .ann-guide {
-      top:9.5rem; right:4rem;
-      font-size: clamp(1rem,2vw,1.4rem);
+      top:7rem; right:2rem;
+      font-size: clamp(.9rem,1.6vw,1.2rem);
       text-align:right;
     }
     .ann-role {
@@ -457,6 +473,51 @@
       color:var(--pink);
     }
 
+    /* project image previews */
+    .proj-img {
+      width:100%;
+      aspect-ratio:16/9;
+      object-fit:cover;
+      display:block;
+      margin-bottom:1.2rem;
+      border:1.5px solid rgba(28,21,16,.08);
+    }
+    .proj-img.portrait { aspect-ratio:3/4; }
+    .proj-video-thumb {
+      width:100%;
+      aspect-ratio:16/9;
+      background:var(--ink);
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      gap:.8rem;
+      margin-bottom:1.2rem;
+      cursor:pointer;
+      position:relative;
+      overflow:hidden;
+    }
+    .proj-video-thumb::before {
+      content:'';
+      position:absolute; inset:0;
+      background: linear-gradient(135deg, #2a1f18, #1c1510);
+      opacity:.9;
+    }
+    .play-btn {
+      position:relative; z-index:2;
+      width:54px; height:54px;
+      background:var(--pink);
+      border-radius:50%;
+      display:grid; place-items:center;
+      font-size:1.3rem;
+      transition:transform .2s;
+    }
+    .proj-video-thumb:hover .play-btn { transform:scale(1.1); }
+    .play-label {
+      position:relative; z-index:2;
+      font-family:var(--hand);
+      font-size:1.1rem;
+      color:rgba(255,255,255,.7);
+    }
+
     /* ── ANIMATIONS ── */
     @keyframes pulse {
       0%,100%{opacity:1;transform:scale(1)}
@@ -479,8 +540,11 @@
 
     @media(max-width:860px){
       nav{padding:1rem 1.5rem;}
-      #hero{padding:6rem 1.5rem 3rem; min-height:85vh;}
-      .hero-bg-name{font-size:clamp(6rem,26vw,12rem);}
+      #hero{grid-template-columns:1fr; min-height:auto;}
+      .hero-name-block{padding:6rem 1.5rem 1.5rem; align-items:flex-start;}
+      .hero-bg-name{font-size:clamp(5rem,18vw,9rem);}
+      .hero-photo-col{height:60vw;}
+      .ann-guide{top:5rem; right:1rem; font-size:.95rem;}
       #ueber,#kontakt{grid-template-columns:1fr; padding:4rem 1.5rem;}
       .about-right{height:320px; margin-top:2rem;}
       .ab1{width:180px;height:250px;}
@@ -509,17 +573,20 @@
 <!-- ── HERO ── -->
 <section id="hero">
 
-  <!-- giant handwritten bg name -->
-  <div class="hero-bg-name">Saphira<br>Knapp.</div>
+  <!-- left: annotations + big name -->
+  <div class="hero-name-block">
+    <div class="hero-annotation ann-hi">Hi. Da du neu hier bist —<br>lass mich dein Guide sein.</div>
+    <div class="hero-bg-name">Saphira<br>Knapp.</div>
+    <div class="hero-annotation ann-role" style="position:relative;bottom:auto;left:auto;margin-top:1rem;">Mediengestalterin / Content Creator</div>
+  </div>
 
-  <!-- b&w photo sitting on text -->
-  <img class="hero-photo" src="foto2.jpg" alt="Saphira Phoebe Knapp" />
+  <!-- right: photo full height -->
+  <div class="hero-photo-col">
+    <div class="hero-annotation ann-guide">This is<br>Saphira.</div>
+    <img class="hero-photo" src="foto2.jpg" alt="Saphira Phoebe Knapp" />
+    <div class="hero-annotation ann-by" style="bottom:2rem;right:2rem;">By Saphira Knapp</div>
+  </div>
 
-  <!-- handwritten annotations -->
-  <div class="hero-annotation ann-hi">Hi. Da du neu hier bist —<br>lass mich dein Guide sein.</div>
-  <div class="hero-annotation ann-guide">This is<br>Saphira.</div>
-  <div class="hero-annotation ann-role">Mediengestalterin / Content Creator</div>
-  <div class="hero-annotation ann-by">By Saphira Knapp</div>
 </section>
 
 <!-- ── ÜBER MICH ── -->
@@ -566,52 +633,81 @@
   <h2 class="page-title reveal">Ausgewählte <span>Projekte.</span></h2>
 
   <div class="proj-grid">
+
+    <!-- Projekt 1: Dorow Clinic Recruiting Poster -->
     <div class="proj-card wide reveal">
+      <img src="dorow.png" alt="Dorow Clinic – Deine Zukunft beginnt hier" class="proj-img" />
       <div class="proj-num">01</div>
+      <h3>Recruiting Poster — Dorow Clinic</h3>
+      <p>"Deine Zukunft beginnt hier." – Gestaltung eines Recruiting-Posters für die Dorow Clinic zur Gewinnung von Auszubildenden. Klinik-CI, Typografie & Bildkomposition.</p>
+      <div class="proj-tags">
+        <span class="tag p">Print Design</span>
+        <span class="tag p">Canva</span>
+        <span class="tag">CI/Branding</span>
+        <span class="tag">Dorow Clinic</span>
+      </div>
+    </div>
+
+    <!-- Projekt 2: How to Wilderer Plakat -->
+    <div class="proj-card reveal">
+      <img src="wilderer.jpg" alt="How to Wilderer – Häsordnung" class="proj-img portrait" style="aspect-ratio:2/3;" />
+      <div class="proj-num">02</div>
+      <h3>How to Wilderer — Häsordnung</h3>
+      <p>Illustration und Gestaltung der Häsordnung für die Narrenzunft "Wilderer" Untermettingen. Charakter-Illustration, Typografie & Printlayout.</p>
+      <div class="proj-tags">
+        <span class="tag p">Illustration</span>
+        <span class="tag">Print</span>
+        <span class="tag">ProCreate</span>
+      </div>
+    </div>
+
+    <!-- Projekt 3: Recap Ball Video -->
+    <div class="proj-card reveal">
+      <div style="width:100%;aspect-ratio:16/9;margin-bottom:1.2rem;overflow:hidden;">
+        <iframe
+          src="https://www.youtube.com/embed/M0AzAkijUgM"
+          title="Recap Ball"
+          style="width:100%;height:100%;border:none;display:block;"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="proj-num">03</div>
+      <h3>Recap Ball — Videoproduktion</h3>
+      <p>Konzept, Dreh und Schnitt eines Recap-Videos für einen Ball. Storytelling durch Bewegtbild – Atmosphäre einfangen, Momente festhalten.</p>
+      <div class="proj-tags">
+        <span class="tag p">Video</span>
+        <span class="tag p">Schnitt</span>
+        <span class="tag">Storytelling</span>
+      </div>
+    </div>
+
+    <!-- Projekt 4: Social Media Content Dorow -->
+    <div class="proj-card wide reveal">
+      <div class="proj-num">04</div>
       <h3>Social Media Content — Dorow Clinic</h3>
-      <p>Planung, Erstellung & Betreuung der Social-Media-Kanäle (Instagram, TikTok, Facebook, YouTube) einer führenden Klinik für Zahnmedizin & Ästhetische Chirurgie. 85k+ Follower auf Instagram.</p>
+      <p>Planung, Erstellung & Betreuung der Social-Media-Kanäle (Instagram, TikTok, Facebook, YouTube) einer führenden Klinik. 85k+ Follower auf Instagram.</p>
       <div class="proj-tags">
         <span class="tag p">Instagram</span>
         <span class="tag p">TikTok</span>
         <span class="tag p">YouTube</span>
         <span class="tag">Community Mgmt</span>
         <span class="tag">Content Strategy</span>
-        <span class="tag">Influencer Marketing</span>
       </div>
     </div>
 
+    <!-- Projekt 5: Weitere Arbeiten -->
     <div class="proj-card reveal">
-      <div class="proj-num">02</div>
-      <h3>Print Design & Layout</h3>
-      <p>Druckfertige Medien mit Liebe zur Typografie – Flyer, Plakate, Broschüren.</p>
-      <div class="proj-tags"><span class="tag">Print</span><span class="tag">InDesign</span></div>
-    </div>
-
-    <div class="proj-card reveal">
-      <div class="proj-num">03</div>
-      <h3>Illustration & ProCreate</h3>
-      <p>Digitale Illustrationen für Print & Digital – von handgezeichnet bis clean.</p>
-      <div class="proj-tags"><span class="tag p">ProCreate</span><span class="tag">Digital Art</span></div>
-    </div>
-
-    <div class="proj-card reveal">
-      <div class="proj-num">04</div>
-      <h3>Branding & Visual Identity</h3>
-      <p>Konsistente Markenbilder: Farbpaletten, Typografie & Gestaltungsrichtlinien.</p>
-      <div class="proj-tags"><span class="tag">Branding</span><span class="tag p">Canva</span></div>
-    </div>
-
-    <div class="proj-card wide reveal">
       <div class="proj-num">05</div>
-      <h3>Content Produktion, Reels & Newsletter</h3>
-      <p>Reels, Stories, Fotos mit Gespür für Trends & Ästhetik. E-Mail-Kampagnen mit Inxmail – responsiv und wirkungsvoll.</p>
+      <h3>Print, Illustration & mehr</h3>
+      <p>Weitere Projekte: Flyer, Broschüren, digitale Illustrationen, Newsletter-Kampagnen & Branding-Arbeiten.</p>
       <div class="proj-tags">
-        <span class="tag p">Fotografie</span>
-        <span class="tag p">Reels</span>
+        <span class="tag">Print</span>
         <span class="tag">Inxmail</span>
-        <span class="tag">E-Mail Marketing</span>
+        <span class="tag p">Adobe CC</span>
       </div>
     </div>
+
   </div>
 </section>
 
