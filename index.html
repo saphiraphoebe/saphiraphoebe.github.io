@@ -7,11 +7,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --bg:      #e8e0d4;
-      --paper:   #ede5d8;
-      --cream:   #f2ebe0;
+      --bg:      #f3ede4;
+      --paper:   #f8f4f0;
+      --cream:   #faf6f1;
       --ink:     #1c1510;
-      --pink:    #e87fa0;
+      --pink:    #FF46A2;
       --pink2:   #f0a0be;
       --muted:   #8a7e72;
       --hand:    'Caveat', cursive;
@@ -43,7 +43,7 @@
       position:fixed; top:0; left:0; right:0; z-index:200;
       display:flex; justify-content:space-between; align-items:center;
       padding:1.1rem 3rem;
-      background: rgba(232,224,212,.85);
+      background: rgba(243,237,228,.9);
       backdrop-filter: blur(8px);
     }
     .nav-logo {
@@ -69,10 +69,10 @@
       min-height:100vh;
       position:relative;
       overflow:hidden;
-      background: var(--bg);
+      background: linear-gradient(135deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,.08) 100%), url('hero-bg.jpg') center/cover no-repeat;
       display:grid;
       grid-template-columns: 1fr 1fr;
-      align-items: end;
+      align-items: center;
       padding: 5rem 0 0 0;
     }
 
@@ -85,6 +85,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      background: linear-gradient(90deg, rgba(0,0,0,.3) 0%, rgba(0,0,0,.12) 75%, transparent 100%);
     }
 
     /* big handwritten name — contained in left col */
@@ -92,73 +93,68 @@
       font-family: var(--hand);
       font-size: clamp(7rem, 14vw, 13rem);
       font-weight:700;
-      color: var(--pink);
+      color: #fff;
       line-height:.88;
       letter-spacing:-.02em;
       z-index:1;
-      opacity:.95;
+      opacity:1;
+      text-shadow:
+        0 0 20px rgba(0, 0, 0, 0.4),
+        2px 2px 4px rgba(0, 0, 0, 0.5);
     }
 
     /* right half: photo fills full height */
     .hero-photo-col {
-      position: relative;
-      height: 100vh;
-      overflow: hidden;
+      display: none;
     }
 
-    /* hero photo — freigestellt, schwebt auf dem Hintergrund */
+    /* hero photo — hidden, now background */
     .hero-photo {
-      position: absolute;
-      bottom: 0;
-      left: 34%;
-      transform: translateX(-50%);
-      z-index: 2;
-      height: 98%;
-      width: auto;
-      filter: contrast(1.02) drop-shadow(0 10px 28px rgba(28,21,16,.14));
-      pointer-events: none;
+      display: none;
     }
 
     /* handwritten annotations */
     .hero-annotation {
       font-family: var(--sans);
       position:absolute;
-      color: var(--ink);
+      color: white;
       z-index:3;
+      font-weight: 700;
+      letter-spacing: 0.3px;
     }
     .ann-hi {
       top: 7rem; left:3rem;
-      font-size: clamp(.8rem,1.2vw,.92rem);
-      font-weight:300;
-      line-height:1.7;
+      font-size: clamp(.9rem,1.3vw,1.05rem);
+      font-weight:700;
+      line-height:1.6;
       max-width:20rem;
-      color: var(--muted);
+      color: #fff;
     }
     .ann-guide {
       top:7rem; right:2rem;
-      font-size:.6rem;
-      font-weight:500;
+      font-size: clamp(.65rem, 1vw, .75rem);
+      font-weight:700;
       letter-spacing:.18em;
       text-transform:uppercase;
       text-align:right;
-      line-height:1.7;
-      color: var(--muted);
+      line-height:1.6;
+      color: #fff;
     }
     .ann-role {
       bottom:2.5rem; left:3.5rem;
-      font-size:1rem;
-      color: var(--muted);
+      font-size: clamp(.95rem, 1.2vw, 1.15rem);
+      color: #fff;
       letter-spacing:.05em;
       font-family: var(--sans);
-      font-weight:300;
+      font-weight:700;
     }
     .ann-by {
       bottom:2.5rem; right:3.5rem;
-      font-size:.58rem;
-      font-weight:500;
+      font-size: clamp(.6rem, 0.9vw, .75rem);
+      font-weight:700;
       letter-spacing:.18em;
       text-transform:uppercase;
-      color: var(--muted);
+      color: #fff;
     }
 
     /* heart dot on the i in Saphira */
@@ -169,8 +165,8 @@
     .heart-i::after {
       content: '♥';
       position: absolute;
-      top: 0.07em;
-      left: 50%;
+      top: 0.35em;
+      left: 72%;
       transform: translateX(-50%);
       font-size: 0.23em;
       color: var(--pink);
@@ -190,7 +186,7 @@
       align-items:start;
       position:relative;
       overflow:hidden;
-      border-top:1.5px solid rgba(28,21,16,.12);
+      border-top:1.5px solid rgba(28,21,16,.08);
     }
 
     .about-left { position:relative; }
@@ -206,7 +202,7 @@
     .about-body p {
       font-size:.93rem;
       line-height:2;
-      color:#4a3e34;
+      color:#5a4e46;
       margin-bottom:1rem;
     }
     .about-body strong { font-weight:500; color:var(--ink); }
@@ -224,9 +220,9 @@
       break-inside:avoid;
       margin-bottom:.8rem;
       border:4px solid #fff;
-      box-shadow:2px 4px 12px rgba(0,0,0,.15);
+      box-shadow:2px 4px 12px rgba(0,0,0,.12);
       overflow:hidden;
-      background:#fff;
+      background:var(--cream);
       transition:transform .25s;
     }
     .ab-pin img { display:block; width:100%; height:auto; }
@@ -238,7 +234,7 @@
     /* sticky-note style caption */
     .sticky {
       position:absolute;
-      background:#fdf2c0;
+      background:#f0e9df;
       padding:.55rem 1rem;
       font-family: var(--sans);
       font-weight:500;
@@ -246,7 +242,7 @@
       letter-spacing:.02em;
       color:var(--ink);
       line-height:1.4;
-      box-shadow:2px 3px 8px rgba(0,0,0,.1);
+      box-shadow:2px 3px 8px rgba(0,0,0,.09);
       z-index:5;
     }
     .sticky1 { top:-16px; left:-12px; transform:rotate(-3deg); }
@@ -263,7 +259,7 @@
       break-inside: avoid;
       margin-bottom: 1.4rem;
       border: 6px solid #fff;
-      box-shadow: 3px 6px 18px rgba(0,0,0,.16);
+      box-shadow: 3px 6px 18px rgba(0,0,0,.12);
       overflow: hidden;
       background: #fff;
       transition: transform .25s;
@@ -311,7 +307,7 @@
     .sk-tool {
       font-size:.64rem;
       padding:.26rem .7rem;
-      border:1px solid rgba(28,21,16,.25);
+      border:1px solid rgba(28,21,16,.2);
       color: var(--muted);
     }
     .sk-tool:hover { background:var(--ink); color:var(--cream); border-color:var(--ink); }
@@ -354,7 +350,7 @@
     #projekte {
       background: var(--paper);
       padding:5rem 3rem;
-      border-top:1.5px solid rgba(28,21,16,.12);
+      border-top:1.5px solid rgba(28,21,16,.08);
     }
     .page-eyebrow {
       font-family: var(--sans);
@@ -380,39 +376,40 @@
 
     .proj-grid {
       display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:1.5rem;
+      grid-template-columns:repeat(3,1fr);
+      gap:1.2rem;
     }
     .proj-card {
       background: var(--cream);
-      padding:1.8rem;
-      border:1.5px solid rgba(28,21,16,.1);
+      padding:1.6rem;
+      border:1.5px solid rgba(28,21,16,.08);
       position:relative;
       transition:transform .25s;
     }
     .proj-card:hover { transform:translateY(-4px); }
-    .proj-card.wide { grid-column:span 2; }
+    .proj-card.wide { grid-column:span 3; }
 
     .proj-num {
       font-family: var(--sans);
-      font-weight:700;
-      font-size:1.25rem;
-      color: var(--pink);
+      font-weight:600;
+      font-size:.85rem;
+      color: var(--muted);
       line-height:1;
-      margin-bottom:.7rem;
-      letter-spacing:.02em;
+      margin-bottom:.6rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
     }
     .proj-card h3 {
-      font-size:.95rem;
-      font-weight:500;
-      margin-bottom:.5rem;
-      line-height:1.3;
+      font-size:.88rem;
+      font-weight:600;
+      margin-bottom:.4rem;
+      line-height:1.25;
     }
     .proj-card p {
-      font-size:.82rem;
+      font-size:.78rem;
       color:#6a5a50;
-      line-height:1.75;
-      margin-bottom:1rem;
+      line-height:1.6;
+      margin-bottom:.8rem;
     }
     .proj-tags { display:flex; flex-wrap:wrap; gap:.3rem; }
     .tag {
@@ -420,7 +417,7 @@
       letter-spacing:.07em;
       text-transform:uppercase;
       padding:.18rem .55rem;
-      border:1px solid rgba(28,21,16,.2);
+      border:1px solid rgba(28,21,16,.15);
       color:var(--muted);
     }
     .tag.p { border-color:var(--pink); color:var(--pink); }
@@ -429,7 +426,7 @@
     #cv {
       background: var(--cream);
       padding:5rem 3rem;
-      border-top:1.5px solid rgba(28,21,16,.12);
+      border-top:1.5px solid rgba(28,21,16,.08);
     }
     .cv-cols {
       display:grid;
@@ -446,7 +443,7 @@
       color: var(--pink);
       margin-bottom:1.8rem;
       padding-bottom:.6rem;
-      border-bottom:1.5px solid rgba(232,127,160,.3);
+      border-bottom:1.5px solid rgba(255, 70, 162, .25);
     }
     .cv-item {
       display:grid;
@@ -454,7 +451,7 @@
       gap:.8rem;
       margin-bottom:1.8rem;
       padding-bottom:1.8rem;
-      border-bottom:1px dashed rgba(28,21,16,.1);
+      border-bottom:1px dashed rgba(28,21,16,.08);
     }
     .cv-item:last-child { border-bottom:none; margin-bottom:0; }
     .cv-yr {
@@ -493,9 +490,9 @@
 
     /* ── PAGE 6 · KONTAKT ── */
     #kontakt {
-      background: var(--bg);
+      background: var(--pink);
       padding:5rem 3rem;
-      border-top:1.5px solid rgba(28,21,16,.12);
+      border-top:1.5px solid rgba(255, 70, 162, .25);
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:4rem;
@@ -508,11 +505,12 @@
       font-size: clamp(6rem,16vw,13rem);
       font-family: var(--sans);
       font-weight:500;
-      color:rgba(28,21,16,.04);
+      color:rgba(255,255,255,.0);
       bottom:-1rem; right:-1rem;
       pointer-events:none;
       letter-spacing:-.03em;
       line-height:1;
+      display:none;
     }
     .kontakt-left {}
     .kontakt-title {
@@ -520,11 +518,12 @@
       font-weight:300;
       line-height:1;
       margin-bottom:.5rem;
+      color: var(--ink);
     }
     .kontakt-title-hand {
       font-family: var(--hand);
       font-size: clamp(3rem,7vw,6rem);
-      color: var(--pink);
+      color: var(--ink);
       line-height:.9;
       display:block;
     }
@@ -533,7 +532,7 @@
       font-family: var(--sans);
       font-weight:300;
       font-size:.9rem;
-      color: var(--muted);
+      color: var(--ink);
       line-height:1.9;
       max-width:360px;
     }
@@ -541,9 +540,9 @@
     .contact-links-list { list-style:none; }
     .contact-links-list li {
       padding:1.1rem 0;
-      border-bottom:1px solid rgba(28,21,16,.1);
+      border-bottom:1px solid rgba(28,21,16,.15);
     }
-    .contact-links-list li:first-child { border-top:1px solid rgba(28,21,16,.1); }
+    .contact-links-list li:first-child { border-top:1px solid rgba(28,21,16,.15); }
     .contact-links-list a {
       display:flex; justify-content:space-between; align-items:center;
       text-decoration:none;
@@ -552,17 +551,49 @@
       letter-spacing:.05em;
       transition:color .2s;
     }
-    .contact-links-list a:hover { color: var(--pink); }
+    .contact-links-list a:hover { color:#fff; }
     .contact-links-list .cl-label {
-      font-size:.65rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);
+      font-size:.65rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink); opacity:.6;
     }
     .contact-arrow { font-size:1.1rem; opacity:.4; transition:opacity .2s, transform .2s; }
     .contact-links-list a:hover .contact-arrow { opacity:1; transform:translateX(4px); }
 
+    /* social links section */
+    .social-section {
+      margin-top: 2.5rem;
+      padding-top: 2.5rem;
+      border-top: 1.5px solid rgba(28,21,16,.08);
+    }
+    .social-label {
+      font-size:.65rem;
+      font-weight:600;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color: var(--muted);
+      margin-bottom:1rem;
+      display:block;
+    }
+    .social-links {
+      list-style:none;
+      display:flex;
+      gap:1.2rem;
+      flex-wrap:wrap;
+    }
+    .social-links li a {
+      font-size:.85rem;
+      color: var(--pink);
+      text-decoration:none;
+      transition:opacity .2s;
+      display:inline-flex;
+      align-items:center;
+      gap:.4rem;
+    }
+    .social-links li a:hover { opacity:.7; }
+
     /* ── FOOTER ── */
     footer {
       background:var(--ink);
-      color:rgba(232,224,212,.4);
+      color:rgba(243,237,228,.4);
       padding:1.4rem 3rem;
       display:flex; justify-content:space-between; align-items:center;
       font-size:.7rem; letter-spacing:.08em;
@@ -626,23 +657,28 @@
     #arbeiten {
       background: var(--bg);
       padding:5rem 3rem;
-      border-top:1.5px solid rgba(28,21,16,.12);
+      border-top:1.5px solid rgba(28,21,16,.08);
     }
     .gallery-grid {
       display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:1.5rem;
+      grid-template-columns:repeat(3,1fr);
+      gap:1rem;
       margin-top:2.5rem;
       align-items:start;
     }
     .gallery-item {
       background: var(--cream);
-      border:1.5px solid rgba(28,21,16,.1);
+      border:1.5px solid rgba(28,21,16,.08);
       overflow:hidden;
       transition:transform .25s;
     }
     .gallery-item:hover { transform:translateY(-4px); }
     .gallery-item.full { grid-column:1 / -1; }
+    .gallery-item.span-2 { grid-column:span 2; }
+    .gallery-item.featured {
+      border-color: var(--pink);
+      border-width: 2px;
+    }
     .gallery-item > img {
       display:block;
       width:100%;
@@ -655,6 +691,20 @@
     }
     .gallery-video iframe {
       width:100%; height:100%; border:none; display:block;
+    }
+    .featured-badge {
+      position:absolute;
+      top:1.2rem;
+      right:1.2rem;
+      background:var(--pink);
+      color:#fff;
+      padding:.4rem 1rem;
+      font-size:.7rem;
+      font-weight:600;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      z-index:10;
+      border-radius:2px;
     }
     .gallery-cap { padding:1rem 1.3rem 1.2rem; }
     .gallery-cap h3 {
@@ -694,22 +744,25 @@
       nav{padding:1rem 1.2rem;}
       .nav-links{gap:1.1rem;}
       .nav-links a{font-size:.62rem; letter-spacing:.1em;}
-      #hero{grid-template-columns:1fr; min-height:auto;}
-      .hero-name-block{padding:6rem 1.5rem 1.5rem; align-items:flex-start; justify-content:flex-start;}
-      .hero-bg-name{font-size:clamp(5rem,18vw,9rem);}
-      .hero-photo-col{height:78vw;}
+      #hero{grid-template-columns:1fr; min-height:100vh; padding:3rem 0 0 0;}
+      .hero-name-block{padding:5rem 1.5rem 2rem; align-items:flex-start; justify-content:center;}
+      .hero-bg-name{font-size:clamp(3rem,15vw,6rem);}
+      .hero-photo-col{height:0;}
       .hero-photo{left:50%;}
-      .ann-hi,.ann-guide,.ann-by{display:none;}
-      .ann-role{position:static; margin-top:1.2rem; left:auto; bottom:auto;}
+      .ann-hi{top:2rem; left:1.5rem; font-size:clamp(.75rem, 2.5vw, .9rem);}
+      .ann-guide{display:none;}
+      .ann-by{display:none;}
+      .ann-role{position:static; margin-top:1rem; left:auto; bottom:auto; font-size:clamp(.85rem, 2vw, 1rem);}
       #ueber,#kontakt{grid-template-columns:1fr; padding:4rem 1.5rem;}
       .about-right{height:auto; margin-top:2rem;}
       .ab-board{column-count:2;}
       .ab1{width:180px;height:250px;}
       .ab2{width:155px;height:200px;}
       #projekte,#cv,#arbeiten,#vibe{padding:4rem 1.5rem;}
-      .proj-grid{grid-template-columns:1fr;}
-      .proj-card.wide{grid-column:span 1;}
-      .gallery-grid{grid-template-columns:1fr;}
+      .proj-grid{grid-template-columns:repeat(2,1fr);}
+      .proj-card.wide{grid-column:span 2;}
+      .gallery-grid{grid-template-columns:repeat(2,1fr);}
+      .gallery-item.span-2 { grid-column:span 2; }
       .cv-cols{grid-template-columns:1fr; gap:2.5rem;}
       footer{flex-direction:column;gap:.8rem;text-align:center;}
     }
@@ -721,6 +774,10 @@
       .hero-bg-name{font-size:clamp(4rem,21vw,6rem);}
       .vibe-quote{font-size:clamp(1.8rem,8vw,2.4rem);}
       .about-handtitle{font-size:clamp(2.6rem,12vw,3.4rem);}
+      .proj-grid{grid-template-columns:1fr;}
+      .proj-card.wide{grid-column:span 1;}
+      .gallery-grid{grid-template-columns:1fr;}
+      .gallery-item.span-2 { grid-column:span 1; }
     }
   </style>
 </head>
@@ -732,6 +789,7 @@
   <ul class="nav-links">
     <li><a href="#ueber">Über mich</a></li>
     <li><a href="#projekte">Projekte</a></li>
+    <li><a href="#arbeiten">Arbeiten</a></li>
     <li><a href="#cv">CV</a></li>
     <li><a href="#kontakt">Kontakt</a></li>
   </ul>
@@ -743,7 +801,7 @@
   <!-- left: annotations + big name -->
   <div class="hero-name-block">
     <div class="hero-annotation ann-hi">Hi, schön dass du da bist!<br>Viel Spaß beim Durchstöbern.</div>
-    <div class="hero-bg-name">Saph<span class="heart-i">ı</span>ra<br>Knapp.</div>
+    <div class="hero-bg-name"><span style="color:var(--pink); text-shadow: 0 0 30px rgba(255, 70, 162, 0.8), 0 0 60px rgba(255, 70, 162, 0.5), 2px 2px 4px rgba(0, 0, 0, 0.5);">Saph<span class="heart-i">ı</span>ra</span><br>Knapp.</div>
     <div class="hero-annotation ann-role">Mediengestalterin / Content Creator</div>
   </div>
 
@@ -761,9 +819,10 @@
   <div class="about-left reveal">
     <div class="about-handtitle">Auf<br>den<br><span class="pink">Punkt.</span></div>
     <div class="about-body">
-      <p>Huhu, ich bin Saphira, 22 – <strong>Mediengestalterin und Social Media Content Creatorin.</strong></p>
-      <p>Zurzeit arbeite ich im Marketing der Dorow Clinic in Waldshut: Ich plane, produziere und betreue Content für Instagram, TikTok, Facebook & YouTube.</p>
-      <p>Zuhause bin ich in Breitenfeld, einem kleinen Dorf im Schwarzwald. Als Naturfreundin hole ich mir hier zwischen Wald und Wiesen den Kopf frei – und neue Ideen.</p>
+      <p>Hey, ich bin Saphira, 22 – <strong>Gestalterin & Content Creatorin mit Fokus auf Visuelles Storytelling & Brand Design.</strong></p>
+      <p>Meine Passion: Geschichten erzählen, die ankommen. Ob durch visuelle Branding-Konzepte, packende Social-Media-Inhalte oder durchdacht gestaltete Print-Designs – ich erschaffe visuelle Identitäten, die Marken zum Leben erwecken und Menschen verbinden.</p>
+      <p>Zurzeit bringe ich diese Vision im Marketing der Dorow Clinic in Waldshut zum Ausdruck: Strategie, Produktion und Community für Instagram, TikTok, Facebook & YouTube.</p>
+      <p>Zuhause in Breitenfeld, einem kleinen Dorf in der Natur. Zwischen Wald und Wiesen tanke ich auf – und finde dort die Inspiration für meine kreativen Projekte.</p>
       <div class="skills">
         <div class="skills-group">
           <span class="skills-label">Sehr gut</span>
@@ -781,7 +840,6 @@
             <span class="sk">Grafikdesign</span>
             <span class="sk">Illustration</span>
             <span class="sk">Social-Media-Marketing</span>
-            <span class="sk">E-Commerce</span>
             <span class="sk">Online-Content-Erstellung</span>
           </div>
         </div>
@@ -799,6 +857,9 @@
             <span class="sk sk-tool">MS Office</span>
             <span class="sk sk-tool">Asana</span>
             <span class="sk sk-tool">HTML &amp; CSS</span>
+            <span class="sk sk-tool">AI Prompting</span>
+            <span class="sk sk-tool">ChatGPT</span>
+            <span class="sk sk-tool">Claude</span>
           </div>
         </div>
       </div>
@@ -835,54 +896,44 @@
 
   <div class="proj-grid">
 
-    <!-- 01 · Social Media (Marketing-Kern) -->
+    <!-- 01 · Print Design & Brand Design -->
     <div class="proj-card reveal">
       <div class="proj-num">01</div>
-      <h3>Social Media & Content Creation — Dorow Clinic</h3>
-      <p>Planung, Produktion und Betreuung der Social-Media-Kanäle (Instagram, TikTok, Facebook & YouTube). Content-Strategie, Community Management und Influencer Marketing für eine führende Klinik.</p>
+      <h3>Print Design & Branding</h3>
+      <p>Visuelle Identitäten schaffen, die bleiben: Von Corporate Identity über Flyer bis Großformate. Ich konzipiere durchdachte Print-Designs mit starker visueller Hierarchie, prägnanten Typografien und Illustrationen, die Marken zum Leben erwecken.</p>
       <div class="proj-tags">
-        <span class="tag p">Content Strategy</span>
-        <span class="tag p">Instagram</span>
-        <span class="tag p">TikTok</span>
-        <span class="tag">Community Mgmt</span>
+        <span class="tag p">Print Design</span>
+        <span class="tag p">Branding</span>
+        <span class="tag p">Corporate Identity</span>
+        <span class="tag">Illustration</span>
+        <span class="tag">InDesign</span>
       </div>
     </div>
 
-    <!-- 02 · Marketing & Recruiting -->
+    <!-- 02 · Visuelles Storytelling & Content -->
     <div class="proj-card reveal">
       <div class="proj-num">02</div>
-      <h3>Marketing & Recruiting — Dorow Clinic</h3>
-      <p>Konzeption und Gestaltung von Marketing- und Recruiting-Material – vom Print-Poster bis zur Kampagne, immer im Einklang mit der Klinik-CI.</p>
+      <h3>Visuelles Storytelling — Social & Video</h3>
+      <p>Geschichten erzählen, die ankommen. Ich entwickle visuelle Narrationen für Social Media und Video – mit Fokus auf Atmosphäre, Emotion und durchdachter Bildsprache. Jeder Frame, jeder Post erzählt eine Geschichte.</p>
       <div class="proj-tags">
-        <span class="tag p">Marketing</span>
-        <span class="tag p">Print Design</span>
-        <span class="tag">CI / Branding</span>
-        <span class="tag">Canva</span>
+        <span class="tag p">Storytelling</span>
+        <span class="tag p">Content Creation</span>
+        <span class="tag p">Video</span>
+        <span class="tag">Instagram</span>
+        <span class="tag">CapCut</span>
       </div>
     </div>
 
-    <!-- 03 · Print & Illustration -->
+    <!-- 03 · Integrated Campaign Design -->
     <div class="proj-card reveal">
       <div class="proj-num">03</div>
-      <h3>Print & Illustration</h3>
-      <p>Illustration und Layout für Print – unter anderem die „Häsordnung" der Narrenzunft Wilderer. Charakter-Illustration, Typografie und Printlayout.</p>
+      <h3>Integrierte Kampagnen — Print & Digital</h3>
+      <p>Konsistente visuelle Identitäten über alle Kanäle: Print, Social Media, Web. Ich denke ganzheitlich – von der Farbpalette bis zur Typografie, vom Recruiting-Poster bis zum TikTok-Video. Markenidentität, die funktioniert.</p>
       <div class="proj-tags">
-        <span class="tag p">Illustration</span>
-        <span class="tag">Print</span>
-        <span class="tag">ProCreate</span>
-        <span class="tag">Adobe CC</span>
-      </div>
-    </div>
-
-    <!-- 04 · Video -->
-    <div class="proj-card reveal">
-      <div class="proj-num">04</div>
-      <h3>Videoproduktion & Schnitt</h3>
-      <p>Konzept, Dreh und Schnitt von Bewegtbild – Storytelling, das Atmosphäre einfängt und Momente festhält.</p>
-      <div class="proj-tags">
-        <span class="tag p">Video</span>
-        <span class="tag">Schnitt</span>
-        <span class="tag">Storytelling</span>
+        <span class="tag p">Kampagnendesign</span>
+        <span class="tag p">Print + Digital</span>
+        <span class="tag">CI Management</span>
+        <span class="tag">Marketing</span>
       </div>
     </div>
 
@@ -896,22 +947,54 @@
 
   <div class="gallery-grid">
 
+    <!-- Print Design Row 1 -->
     <div class="gallery-item reveal">
       <img src="dorow.png" alt="Dorow Clinic – Recruiting Poster" />
       <div class="gallery-cap">
-        <h3>Recruiting Poster — Dorow Clinic</h3>
-        <p>„Deine Zukunft beginnt hier." · Print · Canva</p>
+        <h3>Recruiting Poster</h3>
+        <p>Dorow Clinic · Print · Canva</p>
       </div>
     </div>
 
     <div class="gallery-item reveal">
-      <img src="wilderer.jpg" alt="How to Wilderer – Häsordnung" />
+      <img src="rosenmontag.jpg" alt="Rosenmontags-Umzug — Flyer Design" />
       <div class="gallery-cap">
-        <h3>How to Wilderer — Häsordnung</h3>
-        <p>Illustration · Print · ProCreate</p>
+        <h3>Event-Flyer</h3>
+        <p>Rosenmontag · Print · Canva</p>
       </div>
     </div>
 
+    <div class="gallery-item reveal">
+      <img src="bauzaunbanner.jpg" alt="Bauzaunbanner — Großformatiges Design" />
+      <div class="gallery-cap">
+        <h3>Großformat</h3>
+        <p>Bauzaunbanner · ProCreate & InDesign</p>
+      </div>
+    </div>
+
+    <!-- Flagship Project -->
+    <div class="gallery-item span-2 reveal featured" style="position:relative;">
+      <div class="featured-badge">Flagship Project</div>
+      <div style="background:#f5f5f5; border-radius:8px; overflow:hidden; height:500px;">
+        <embed src="paulas-garden.pdf#toolbar=1&navpanes=0&scrollbar=1" type="application/pdf" width="100%" height="100%" />
+      </div>
+      <div class="gallery-cap">
+        <h3>Paula's Garden — Corporate Identity & Broschüre</h3>
+        <p>Abschlussarbeit · Adobe InDesign · <a href="paulas-garden.pdf" target="_blank" style="color:var(--pink);">→ PDF Download</a></p>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal">
+      <div style="background:#f5f5f5; border-radius:8px; overflow:hidden; height:500px;">
+        <embed src="diefreind.pdf#toolbar=1&navpanes=0&scrollbar=1" type="application/pdf" width="100%" height="100%" />
+      </div>
+      <div class="gallery-cap">
+        <h3>Tierschutz-Flyer</h3>
+        <p>Diefreind e.V. · InDesign · <a href="diefreind.pdf" target="_blank" style="color:var(--pink); font-size:.65rem;">PDF ↓</a></p>
+      </div>
+    </div>
+
+    <!-- Video -->
     <div class="gallery-item full reveal">
       <div class="gallery-video">
         <iframe
@@ -921,8 +1004,8 @@
           allowfullscreen></iframe>
       </div>
       <div class="gallery-cap">
-        <h3>Recap Ball — Videoproduktion</h3>
-        <p>Konzept · Dreh · Schnitt</p>
+        <h3>Recap Ball — Videoproduktion & Storytelling</h3>
+        <p>Konzept · Dreh · Schnitt · Atmosphäre</p>
       </div>
     </div>
 
@@ -1004,13 +1087,19 @@
   <div class="kontakt-bg-text">and<br>that's<br>a wrap.</div>
 
   <div class="kontakt-left reveal">
-    <div class="kontakt-title">and<br>that's</div>
-    <span class="kontakt-title-hand">a wrap.</span>
-    <p class="kontakt-note">Danke, dass du dir die Zeit genommen hast, durch mein Portfolio zu scrollen. Ich freue mich immer über neue Möglichkeiten zum Wachsen und Lernen. Wenn du Interesse an einer Zusammenarbeit hast — meld dich! 🌸</p>
+    <div class="kontakt-title" style="color:#fff;">Lass uns<br>kreativ</div>
+    <span class="kontakt-title-hand" style="color:#fff;">werden.</span>
+    <p class="kontakt-note" style="color:#fff; opacity:.95;">Du hast ein Projekt? Eine Idee? Oder einfach Lust, zusammen etwas zu erschaffen? Schreib mir – ich freue mich drauf!</p>
   </div>
 
   <div class="kontakt-right reveal">
     <ul class="contact-links-list">
+      <li>
+        <a href="tel:+491741500835">
+          <div><div class="cl-label">Telefon</div>+49 174 1500 835</div>
+          <span class="contact-arrow">→</span>
+        </a>
+      </li>
       <li>
         <a href="mailto:saphira.knapp@web.de">
           <div><div class="cl-label">E-Mail</div>saphira.knapp@web.de</div>
@@ -1024,8 +1113,8 @@
         </a>
       </li>
       <li>
-        <a href="tel:+491741500835">
-          <div><div class="cl-label">Telefon</div>+49 174 1500 835</div>
+        <a href="https://linkedin.com/in/saphira-phoebe-knapp-816a60288" target="_blank">
+          <div><div class="cl-label">LinkedIn</div>Saphira Phoebe Knapp</div>
           <span class="contact-arrow">→</span>
         </a>
       </li>
